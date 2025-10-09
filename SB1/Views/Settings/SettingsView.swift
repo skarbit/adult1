@@ -13,6 +13,8 @@ struct SettingsView: View {
                 
                 dataSection
                 
+                medicalResourcesSection
+                
                 supportSection
                 
                 aboutSection
@@ -89,6 +91,56 @@ struct SettingsView: View {
                         .frame(width: 24)
                     Text("Clear All Data")
                         .foregroundColor(.red)
+                }
+            }
+        }
+    }
+    
+    private var medicalResourcesSection: some View {
+        Section(header: Text("Medical Resources")) {
+            Button(action: {
+                if let url = URL(string: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4738200/") {
+                    openURL(url)
+                }
+            }) {
+                HStack {
+                    Image(systemName: "books.vertical.fill")
+                        .foregroundColor(.blue)
+                        .frame(width: 24)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("National Library of Medicine")
+                            .foregroundColor(.primary)
+                        Text("Research and medical information")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+                    Image(systemName: "arrow.up.right.square")
+                        .foregroundColor(.blue)
+                        .font(.caption)
+                }
+            }
+            
+            Button(action: {
+                if let url = URL(string: "https://www.health.harvard.edu/diseases-and-conditions/hemoglobin-a1c-hba1c-what-to-know-if-you-have-diabetes-or-prediabetes-or-are-at-risk-for-these-conditions") {
+                    openURL(url)
+                }
+            }) {
+                HStack {
+                    Image(systemName: "books.vertical.fill")
+                        .foregroundColor(.blue)
+                        .frame(width: 24)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Harvard Health Library")
+                            .foregroundColor(.primary)
+                        Text("HbA1c and diabetes information")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    Spacer()
+                    Image(systemName: "arrow.up.right.square")
+                        .foregroundColor(.blue)
+                        .font(.caption)
                 }
             }
         }

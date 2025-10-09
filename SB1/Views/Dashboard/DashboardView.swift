@@ -8,6 +8,7 @@ struct DashboardView: View {
     @State private var showingAddExercise = false
     @State private var showingAddMedication = false
     @State private var showingAnalytics = false
+    @Environment(\.openURL) private var openURL
     
     var body: some View {
         NavigationView {
@@ -27,6 +28,9 @@ struct DashboardView: View {
                     
                     quickActionsSection
                         .bouncyCardEffect(delay: 0.5)
+                    
+                    medicalResourcesSection
+                        .bouncyCardEffect(delay: 0.6)
                 }
                 .padding()
             }
@@ -254,6 +258,85 @@ struct DashboardView: View {
                 ) {
                     showingAnalytics = true
                 }
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemBackground))
+                .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
+        )
+    }
+    
+    private var medicalResourcesSection: some View {
+        VStack(alignment: .leading, spacing: 15) {
+            HStack {
+                Image(systemName: "books.vertical.fill")
+                    .foregroundColor(.blue)
+                Text("Medical Resources")
+                    .font(.headline)
+            }
+            
+            VStack(spacing: 10) {
+                Button(action: {
+                    if let url = URL(string: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4738200/") {
+                        openURL(url)
+                    }
+                }) {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("National Library of Medicine")
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                                .foregroundColor(.primary)
+                            
+                            Text("Research and medical information")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        Spacer()
+                        
+                        Image(systemName: "arrow.up.right.square.fill")
+                            .foregroundColor(.blue)
+                    }
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color.blue.opacity(0.1))
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
+                
+                Button(action: {
+                    if let url = URL(string: "https://www.health.harvard.edu/diseases-and-conditions/hemoglobin-a1c-hba1c-what-to-know-if-you-have-diabetes-or-prediabetes-or-are-at-risk-for-these-conditions") {
+                        openURL(url)
+                    }
+                }) {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text("Harvard Health Library")
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                                .foregroundColor(.primary)
+                            
+                            Text("HbA1c and diabetes information")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                        
+                        Spacer()
+                        
+                        Image(systemName: "arrow.up.right.square.fill")
+                            .foregroundColor(.blue)
+                    }
+                    .padding()
+                    .background(
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color.blue.opacity(0.1))
+                    )
+                }
+                .buttonStyle(PlainButtonStyle())
             }
         }
         .padding()

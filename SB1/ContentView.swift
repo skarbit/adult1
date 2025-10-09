@@ -6,7 +6,9 @@ struct ContentView: View {
     
     var body: some View {
         Group {
-            if dataManager.userProfile.isOnboardingComplete {
+            if !dataManager.userProfile.disclaimerAccepted {
+                DisclaimerView()
+            } else if dataManager.userProfile.isOnboardingComplete {
                 MainTabView()
             } else {
                 OnboardingView()

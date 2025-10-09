@@ -8,6 +8,7 @@ struct UserProfile: Codable {
     var targetGlucoseFasting: ClosedRange<Double>
     var targetGlucoseAfterMeal: ClosedRange<Double>
     var isOnboardingComplete: Bool
+    var disclaimerAccepted: Bool
     
     static let shared = UserProfile(
         age: 0,
@@ -16,7 +17,8 @@ struct UserProfile: Codable {
         diabetesType: .type1,
         targetGlucoseFasting: 4.0...7.0,
         targetGlucoseAfterMeal: 5.0...10.0,
-        isOnboardingComplete: false
+        isOnboardingComplete: false,
+        disclaimerAccepted: false
     )
 }
 
