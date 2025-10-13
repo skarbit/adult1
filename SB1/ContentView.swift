@@ -2,7 +2,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var dataManager = DataManager.shared
+    @EnvironmentObject var dataManager: DataManager
+    @EnvironmentObject var contentProvider: HealthContentProvider
     
     var body: some View {
         Group {
@@ -14,10 +15,16 @@ struct ContentView: View {
                 OnboardingView()
             }
         }
-        .environmentObject(dataManager)
+        .onAppear {
+            if contentProvider.shouldShowPremiumContent() {
+                contentProvider.checkContentAvailability { _ in }
+            }
+        }
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(DataManager.shared)
+        .environmentObject(HealthContentProvider.shared)
 }

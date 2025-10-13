@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct DisclaimerView: View {
-    @ObservedObject private var dataManager = DataManager.shared
+    @EnvironmentObject var dataManager: DataManager
     
     var body: some View {
         ZStack {
@@ -63,5 +63,6 @@ struct DisclaimerView: View {
 
 #Preview {
     DisclaimerView()
+        .environmentObject(DataManager.shared)
 }
 
